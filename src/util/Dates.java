@@ -1,6 +1,5 @@
 package util;
 
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -68,11 +67,15 @@ public class Dates {
      * @return Devuelve la fecha en String
      */
     public static String imprimeFecha(Date cal) {
-        String date;
-        SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
-        date = formato.format(cal);
 
-        return date;
+        if (cal == null) {
+            return "";
+        } else {
+            String date;
+            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
+            date = formato.format(cal);
+            return date;
+        }
     }
 
     /**
