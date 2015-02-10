@@ -69,7 +69,7 @@ public class Dates {
     public static String imprimeFecha(Date cal) {
 
         if (cal == null) {
-            return "";
+            return null;
         } else {
             String date;
             SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
