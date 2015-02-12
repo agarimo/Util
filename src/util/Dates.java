@@ -41,6 +41,53 @@ public class Dates {
     }
 
     /**
+     * Devuelve la diferencia entre 2 fechas en milisegundos
+     *
+     * @param fechaMayor
+     * @param fechaMenor
+     * @return
+     */
+    public static long diferenciaFechas(Date fechaMayor, Date fechaMenor) {
+        long diferencia = fechaMayor.getTime() - fechaMenor.getTime();
+        return diferencia;
+    }
+
+    public static String imprimeTiempo(long milisegundos) {
+        String h,m,s;
+        long hora, minuto, segundo;
+        long restohora, restominuto, restosegundo;
+
+        hora = milisegundos / 3600000;
+        restohora = milisegundos % 3600000;
+
+        minuto = restohora / 60000;
+        restominuto = restohora % 60000;
+
+        segundo = restominuto / 1000;
+        restosegundo = restominuto % 1000;
+        
+        if(hora<10){
+            h="0"+hora;
+        }else{
+            h=hora+"";
+        }
+        
+        if(minuto<10){
+            m="0"+minuto;
+        }else{
+            m=minuto+"";
+        }
+        
+        if(segundo<10){
+            s="0"+segundo;
+        }else{
+            s=segundo+"";
+        }
+
+        return h + ":" + m + ":" + s + "." + restosegundo;
+    }
+
+    /**
      * Devuelve un Date a partir de un String y un formato
      *
      * @param fecha String con la fecha
