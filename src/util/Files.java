@@ -36,18 +36,35 @@ public class Files {
 
     public static boolean copiaArchivo(File origen, File destino) {
         try {
-            InputStream in = new FileInputStream(origen);
-            OutputStream out = new FileOutputStream(destino);
-
-            byte[] buffer = new byte[1024];
-            int lenght;
-
-            while ((lenght = in.read(buffer)) > 0) {
-                out.write(buffer, 0, lenght);
+            OutputStream out;
+            try (InputStream in = new FileInputStream(origen)) {
+                out = new FileOutputStream(destino);
+                byte[] buffer = new byte[1024];
+                int lenght;
+                while ((lenght = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, lenght);
+                }
             }
-
-            in.close();
             out.close();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+    
+    public static boolean moverArchivo(File origen, File destino) {
+        try {
+            OutputStream out;
+            try (InputStream in = new FileInputStream(origen)) {
+                out = new FileOutputStream(destino);
+                byte[] buffer = new byte[1024];
+                int lenght;
+                while ((lenght = in.read(buffer)) > 0) {
+                    out.write(buffer, 0, lenght);
+                }
+            }
+            out.close();
+            origen.delete();
 
             return true;
         } catch (IOException e) {
@@ -149,8 +166,8 @@ public class Files {
                 destino.mkdir();
             }
             String[] archivos = origen.list();
-            for (int i = 0; i < archivos.length; i++) {
-                copiaDirectorio(new File(origen, archivos[i]), new File(destino, archivos[i]));
+            for (String archivo : archivos) {
+                copiaDirectorio(new File(origen, archivo), new File(destino, archivo));
             }
         } else {
             copiaArchivo(origen, destino);
