@@ -69,6 +69,18 @@ public class Sql {
         return id;
     }
     
+    public int getInt(String query) throws SQLException{
+        int id;
+        try (ResultSet result = ejecutarQueryRs(query)) {
+            if (result.next()) {
+                id = result.getInt(1);
+            } else {
+                id = -1;
+            }
+        }
+        return id;
+    }
+    
     public double getDouble(String query) throws SQLException{
         double id;
         try (ResultSet result = ejecutarQueryRs(query)) {

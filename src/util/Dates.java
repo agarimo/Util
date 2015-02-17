@@ -84,7 +84,7 @@ public class Dates {
             s=segundo+"";
         }
 
-        return h + ":" + m + ":" + s + "." + restosegundo;
+        return h + " : " + m + " : " + s + "." + restosegundo;
     }
 
     /**

@@ -1,11 +1,11 @@
 package util;
 
-
 import java.awt.Desktop;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  */
 public class Files {
 
-    private static int totalLineas = 0;
+    private static int total = 0;
 
     public static void abrirArchivo(File archivo) {
         if (archivo.exists()) {
@@ -51,7 +51,7 @@ public class Files {
             return false;
         }
     }
-    
+
     public static boolean moverArchivo(File origen, File destino) {
         try {
             OutputStream out;
@@ -132,26 +132,36 @@ public class Files {
         return datos;
     }
 
-    public static int cuentaLineasArchivo(File archivo) {
-        FileReader fr = null;
-        int total = 0;
+    public static void splitArchivo(File archivo,File destino, int lineas,String stn) throws FileNotFoundException {
+        File ds;
+        int contador = 1;
+        int contadorArchivos = 1;
+        String nombre = archivo.getName().substring(0, archivo.getName().lastIndexOf("."));
+        String ln;
+        BufferedReader br;
+
+        File fl;
+        fl=new File(destino, nombre);
+        fl.mkdirs();
+        ds = new File(fl, nombre +"-"+ contadorArchivos + "." + stn);
+
         try {
-            fr = new FileReader(archivo);
-            BufferedReader br = new BufferedReader(fr);
-            String linea;
-            while ((linea = br.readLine()) != null) {
-                total++;
+            br = new BufferedReader(new FileReader(archivo));
+
+            while ((ln = br.readLine()) != null) {
+                Files.anexaArchivo(ds,ln + System.getProperty("line.separator"));
+                contador++;
+
+                if (contador > lineas) {
+                    contadorArchivos++;
+                    ds = new File(fl, nombre +"-"+ contadorArchivos + "." + stn);
+                    contador=1;
+                }
             }
+            br.close();
         } catch (IOException ex) {
             Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                fr.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
-            }
         }
-        return total;
     }
 
     public static void creaDirectorio(File directorio) {
@@ -177,8 +187,8 @@ public class Files {
     public static void borraDirectorio(File directorio) {
         if (directorio.isDirectory()) {
             String[] archivos = directorio.list();
-            for (int i = 0; i < archivos.length; i++) {
-                borraDirectorio(new File(directorio, archivos[i]));
+            for (String archivo : archivos) {
+                borraDirectorio(new File(directorio, archivo));
             }
             directorio.delete();
         } else {
@@ -190,9 +200,8 @@ public class Files {
         File[] archivos = directorio.listFiles();
         File aux;
 
-        for (int i = 0; i < archivos.length; i++) {
-            aux = archivos[i];
-
+        for (File archivo : archivos) {
+            aux = archivo;
             if (aux.isDirectory()) {
                 aux.delete();
             }
@@ -204,20 +213,44 @@ public class Files {
         borraDirectorio(origen);
     }
 
+    public static int cuentaLineasArchivo(File archivo) {
+        FileReader fr = null;
+        int tt = 0;
+        try {
+            fr = new FileReader(archivo);
+            BufferedReader br = new BufferedReader(fr);
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                tt++;
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (null != fr) {
+                    fr.close();
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return tt;
+    }
+
     public static int contarLineasDirectorio(File aux) {
-        totalLineas = 0;
+        total = 0;
         contar(aux);
-        return totalLineas;
+        return total;
     }
 
     private static void contar(File aux) {
         File[] ficheros = aux.listFiles();
 
-        for (int i = 0; i < ficheros.length; i++) {
-            if (ficheros[i].isDirectory()) {
-                contarLineasDirectorio(ficheros[i]);
+        for (File fichero : ficheros) {
+            if (fichero.isDirectory()) {
+                contarLineasDirectorio(fichero);
             } else {
-                totalLineas += cuentaLineasArchivo(ficheros[i]);
+                total += cuentaLineasArchivo(fichero);
             }
         }
     }
