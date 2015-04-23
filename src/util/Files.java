@@ -132,33 +132,41 @@ public class Files {
         return datos;
     }
 
-    public static void splitArchivo(File archivo,File destino, int lineas,String stn) throws FileNotFoundException {
+    public static void splitArchivo(File archivo, File destino, int lineas, String stn) throws FileNotFoundException {
         File ds;
         int contador = 1;
         int contadorArchivos = 1;
         String nombre = archivo.getName().substring(0, archivo.getName().lastIndexOf("."));
         String ln;
         BufferedReader br;
+        FileWriter dw;
+        PrintWriter pw;
 
         File fl;
-        fl=new File(destino, nombre);
+        fl = new File(destino, nombre);
         fl.mkdirs();
-        ds = new File(fl, nombre +"-"+ contadorArchivos + "." + stn);
+        ds = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
 
         try {
             br = new BufferedReader(new FileReader(archivo));
+            dw = new FileWriter(ds, true);
+            pw = new PrintWriter(dw);
 
             while ((ln = br.readLine()) != null) {
-                Files.anexaArchivo(ds,ln + System.getProperty("line.separator"));
+                pw.println(ln);
                 contador++;
 
-                if (contador > lineas) {
+                if (contador >= lineas) {
                     contadorArchivos++;
-                    ds = new File(fl, nombre +"-"+ contadorArchivos + "." + stn);
-                    contador=1;
+                    ds = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
+                    dw = new FileWriter(ds, true);
+                    pw = new PrintWriter(dw);
+                    contador = 1;
                 }
             }
             br.close();
+            pw.close();
+            dw.close();
         } catch (IOException ex) {
             Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
         }
