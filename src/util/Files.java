@@ -137,44 +137,6 @@ public class Files {
         return datos;
     }
 
-    public static void splitArchivo(File archivo, File destino, int lineas, String stn) throws FileNotFoundException {
-        File archivoDestino;
-        int contador = 1;
-        int contadorArchivos = 1;
-        String nombre = archivo.getName().substring(0, archivo.getName().lastIndexOf("."));
-        String ln;
-        BufferedReader in;
-        BufferedWriter out;
-
-        File fl;
-        fl = new File(destino, nombre);
-        fl.mkdirs();
-        archivoDestino = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
-
-        try {
-            in = new BufferedReader(new FileReader(archivo));
-            out = new BufferedWriter(new FileWriter(archivoDestino));
-
-            while ((ln = in.readLine()) != null) {
-                System.out.println("Contador "+contador +" de archivo "+contadorArchivos);
-                System.out.println("Lee : "+ln);
-                out.append(ln);
-                out.newLine();
-                contador++;
-
-                if (contador > lineas) {
-                    contadorArchivos++;
-                    archivoDestino = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
-                    contador = 1;
-                }
-            }
-            in.close();
-            out.close();
-        } catch (IOException ex) {
-            Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
      /**
      * Split file.
      *
