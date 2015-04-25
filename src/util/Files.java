@@ -13,8 +13,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.io.LineIterator;
 
 /**
  *
@@ -133,42 +138,79 @@ public class Files {
     }
 
     public static void splitArchivo(File archivo, File destino, int lineas, String stn) throws FileNotFoundException {
-        File ds;
+        File archivoDestino;
         int contador = 1;
         int contadorArchivos = 1;
         String nombre = archivo.getName().substring(0, archivo.getName().lastIndexOf("."));
         String ln;
-        BufferedReader br;
-        FileWriter dw;
-        PrintWriter pw;
+        BufferedReader in;
+        BufferedWriter out;
 
         File fl;
         fl = new File(destino, nombre);
         fl.mkdirs();
-        ds = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
+        archivoDestino = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
 
         try {
-            br = new BufferedReader(new FileReader(archivo));
-            dw = new FileWriter(ds, true);
-            pw = new PrintWriter(dw);
+            in = new BufferedReader(new FileReader(archivo));
+            out = new BufferedWriter(new FileWriter(archivoDestino));
 
-            while ((ln = br.readLine()) != null) {
-                pw.println(ln);
+            while ((ln = in.readLine()) != null) {
+                System.out.println("Contador "+contador +" de archivo "+contadorArchivos);
+                System.out.println("Lee : "+ln);
+                out.append(ln);
+                out.newLine();
                 contador++;
 
-                if (contador >= lineas) {
+                if (contador > lineas) {
                     contadorArchivos++;
-                    ds = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
-                    dw = new FileWriter(ds, true);
-                    pw = new PrintWriter(dw);
+                    archivoDestino = new File(fl, nombre + "-" + contadorArchivos + "." + stn);
                     contador = 1;
                 }
             }
-            br.close();
-            pw.close();
-            dw.close();
+            in.close();
+            out.close();
         } catch (IOException ex) {
             Logger.getLogger(Files.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+     /**
+     * Split file.
+     *
+     * @param inputFile
+     * @param outputFolder
+     * @param linesPerFile
+     * @param stn
+     * @throws IOException
+     */
+    public static void splitFile(File inputFile, File outputFolder, int linesPerFile, String stn) throws IOException {
+        String filename = inputFile.getName().substring(0, inputFile.getName().lastIndexOf("."));
+
+        int fileCounter = 0;
+        int counter = 1;
+        List<String> newLines = new ArrayList<>();
+
+        LineIterator it = FileUtils.lineIterator(inputFile);
+        try {
+            while (it.hasNext()) {
+                String line = it.nextLine();
+                newLines.add(line);
+                counter++;
+                if (counter == linesPerFile
+                        || (counter < linesPerFile && !it.hasNext())) {
+                    outputFolder.mkdirs();
+
+                    String newFileLocation = filename + "-" + (++fileCounter) + "." + stn;
+                    File outputFile = new File(outputFolder,newFileLocation);
+                    FileUtils.writeLines(outputFile, newLines);
+
+                    newLines.clear();
+                    counter = 1;
+                }
+            }
+        } finally {
+            LineIterator.closeQuietly(it);
         }
     }
 
