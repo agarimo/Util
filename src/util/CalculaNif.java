@@ -58,11 +58,19 @@ public class CalculaNif {
 
     private String calculaDni(String dni) {
         String str = completaCeros(dni, 8);
-        return str + calculaLetra(dni);
+        
+        if(str.length()==9){
+            str=str.substring(0,dni.length()-1);
+        }
+        return str + calculaLetra(str);
     }
 
     private String calculaNie(String nie) {
         String str = null;
+        
+        if(nie.length()==9){
+            nie=nie.substring(0, nie.length()-1);
+        }
 
         if (nie.startsWith("X")) {
             str = nie.replace('X', '0');
