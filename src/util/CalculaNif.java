@@ -1,7 +1,9 @@
 package util;
 
 /**
- * Clase que calcula o valida un documento de identificación del reino de España. (DNI,NIE,CIF).
+ * Clase que calcula o valida un documento de identificación del reino de
+ * España. (DNI,NIE,CIF).
+ *
  * @author Agárimo
  */
 public class CalculaNif {
@@ -13,7 +15,6 @@ public class CalculaNif {
     private final String cifNumero = "ABEH";
     private final String cifLetra = "KPQS";
 
-    
     public CalculaNif() {
     }
 
@@ -58,18 +59,18 @@ public class CalculaNif {
 
     private String calculaDni(String dni) {
         String str = completaCeros(dni, 8);
-        
-        if(str.length()==9){
-            str=str.substring(0,dni.length()-1);
+
+        if (str.length() == 9) {
+            str = str.substring(0, dni.length() - 1);
         }
         return str + calculaLetra(str);
     }
 
     private String calculaNie(String nie) {
         String str = null;
-        
-        if(nie.length()==9){
-            nie=nie.substring(0, nie.length()-1);
+
+        if (nie.length() == 9) {
+            nie = nie.substring(0, nie.length() - 1);
         }
 
         if (nie.startsWith("X")) {
@@ -138,9 +139,9 @@ public class CalculaNif {
 
         sumaTotal = sumaPar + sumaImpar;
         sumaTotal = 10 - (sumaTotal % 10);
-        
-        if(sumaTotal==10){
-            sumaTotal=0;
+
+        if (sumaTotal == 10) {
+            sumaTotal = 0;
         }
 
         if (cifLetra.contains(cabecera)) {
