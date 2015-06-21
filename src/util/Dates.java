@@ -2,6 +2,10 @@ package util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -53,7 +57,7 @@ public class Dates {
     }
 
     public static String imprimeTiempo(long milisegundos) {
-        String h,m,s;
+        String h, m, s;
         long hora, minuto, segundo;
         long restohora, restominuto, restosegundo;
 
@@ -65,23 +69,23 @@ public class Dates {
 
         segundo = restominuto / 1000;
         restosegundo = restominuto % 1000;
-        
-        if(hora<10){
-            h="0"+hora;
-        }else{
-            h=hora+"";
+
+        if (hora < 10) {
+            h = "0" + hora;
+        } else {
+            h = hora + "";
         }
-        
-        if(minuto<10){
-            m="0"+minuto;
-        }else{
-            m=minuto+"";
+
+        if (minuto < 10) {
+            m = "0" + minuto;
+        } else {
+            m = minuto + "";
         }
-        
-        if(segundo<10){
-            s="0"+segundo;
-        }else{
-            s=segundo+"";
+
+        if (segundo < 10) {
+            s = "0" + segundo;
+        } else {
+            s = segundo + "";
         }
 
         return h + " : " + m + " : " + s + "." + restosegundo;
@@ -196,5 +200,21 @@ public class Dates {
         date = formato.format(cal);
 
         return date;
+    }
+
+    public static Date asDate(LocalDate localDate) {
+        return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public static Date asDate(LocalDateTime localDateTime) {
+        return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+    }
+
+    public static LocalDate asLocalDate(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    public static LocalDateTime asLocalDateTime(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 }
