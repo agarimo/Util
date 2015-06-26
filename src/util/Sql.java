@@ -1,7 +1,5 @@
 package util;
 
-
-
 import java.sql.*;
 
 /**
@@ -68,8 +66,20 @@ public class Sql {
         }
         return id;
     }
-    
-    public int getInt(String query) throws SQLException{
+
+    public String getString(String query) throws SQLException {
+        String str;
+        try (ResultSet result = ejecutarQueryRs(query)) {
+            if (result.next()) {
+                str = result.getString(1);
+            } else {
+                str = null;
+            }
+        }
+        return str;
+    }
+
+    public int getInt(String query) throws SQLException {
         int id;
         try (ResultSet result = ejecutarQueryRs(query)) {
             if (result.next()) {
@@ -80,8 +90,8 @@ public class Sql {
         }
         return id;
     }
-    
-    public double getDouble(String query) throws SQLException{
+
+    public double getDouble(String query) throws SQLException {
         double id;
         try (ResultSet result = ejecutarQueryRs(query)) {
             if (result.next()) {
