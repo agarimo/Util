@@ -56,6 +56,19 @@ public class CalculaNif {
             return isDniValido(nif);
         }
     }
+    
+    public String getTipoJuridico(String nif){
+        nif = nif.toUpperCase();
+        String a = nif.substring(0, 1);
+
+        if (letrasCif.contains(a)) {
+            return "E";
+        } else if (letrasNie.contains(a)) {
+            return "P";
+        } else {
+            return "P";
+        }
+    }
 
     private String calculaDni(String dni) {
         String str = completaCeros(dni, 8);
@@ -153,7 +166,7 @@ public class CalculaNif {
         return str;
     }
 
-    private String completaCeros(String str, int num) {
+    public String completaCeros(String str, int num) {
         while (str.length() < num) {
             str = "0" + str;
         }
