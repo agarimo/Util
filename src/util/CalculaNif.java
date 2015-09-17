@@ -56,8 +56,8 @@ public class CalculaNif {
             return isDniValido(nif);
         }
     }
-    
-    public String getTipoJuridico(String nif){
+
+    public String getTipoJuridico(String nif) {
         nif = nif.toUpperCase();
         String a = nif.substring(0, 1);
 
@@ -131,7 +131,11 @@ public class CalculaNif {
     }
 
     private char calculaLetra(String aux) {
-        return letrasNif.charAt(Integer.parseInt(aux) % 23);
+        try {
+            return letrasNif.charAt(Integer.parseInt(aux) % 23);
+        } catch (Exception ex) {
+            return ' ';
+        }
     }
 
     private String calculaDigitoControl(String cif) {
