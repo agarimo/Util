@@ -131,11 +131,7 @@ public class CalculaNif {
     }
 
     private char calculaLetra(String aux) {
-        try {
-            return letrasNif.charAt(Integer.parseInt(aux) % 23);
-        } catch (Exception ex) {
-            return ' ';
-        }
+        return letrasNif.charAt(Integer.parseInt(aux) % 23);
     }
 
     private String calculaDigitoControl(String cif) {
