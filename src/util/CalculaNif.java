@@ -9,7 +9,7 @@ package util;
 public class CalculaNif {
 
     private final String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
-    private final String letrasCif = "ABCDEFGHJKLMNPQRSVW";
+    private final String letrasCif = "ABCDEFGHJKLMNPQRSUVW";
     private final String letrasNie = "XYZ";
     private final String digitoControlCif = "JABCDEFGHI";
     private final String cifNumero = "ABEH";
