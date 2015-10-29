@@ -109,6 +109,24 @@ public class Dates {
         }
         return aux;
     }
+    
+    /**
+     * Método que convierte una fecha a String con el formato pasado como variable
+     *
+     * @param cal Fecha a convertir
+     * @param formato Formato a aplicar
+     * @return Devuelve la fecha en String
+     */
+    public static String imprimeFecha(Date cal, String formato){
+        if (cal == null) {
+            return null;
+        } else {
+            String date;
+            SimpleDateFormat format = new SimpleDateFormat(formato);
+            date = format.format(cal);
+            return date;
+        }
+    }
 
     /**
      * Método que convierte una fecha a String con el siguiente formato:
