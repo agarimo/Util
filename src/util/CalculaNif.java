@@ -58,14 +58,18 @@ public class CalculaNif {
     }
 
     public String getTipoJuridico(String nif) {
-        nif = nif.toUpperCase();
-        String a = nif.substring(0, 1);
+        try {
+            nif = nif.toUpperCase();
+            String a = nif.substring(0, 1);
 
-        if (letrasCif.contains(a)) {
-            return "E";
-        } else if (letrasNie.contains(a)) {
-            return "P";
-        } else {
+            if (letrasCif.contains(a)) {
+                return "E";
+            } else if (letrasNie.contains(a)) {
+                return "P";
+            } else {
+                return "P";
+            }
+        } catch (Exception e) {
             return "P";
         }
     }
