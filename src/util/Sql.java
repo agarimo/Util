@@ -8,7 +8,7 @@ import java.sql.*;
  */
 public class Sql {
 
-    Connection con;
+    public Connection con;
     Statement stmt;
 
     /**

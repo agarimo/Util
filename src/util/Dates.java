@@ -105,7 +105,6 @@ public class Dates {
             aux = sf.parse(fecha);
         } catch (ParseException ex) {
             aux = null;
-            Logger.getLogger(Dates.class.getName()).log(Level.SEVERE, null, ex);
         }
         return aux;
     }
