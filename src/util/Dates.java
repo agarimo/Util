@@ -24,7 +24,8 @@ public class Dates {
      */
     public static Date curdate() {
         Calendar cal = Calendar.getInstance();
-        Date fecha = cal.getTime();
+        Date fecha = formatFecha(imprimeFecha(cal.getTime()),"yyyy-MM-dd");
+        
         return fecha;
     }
 
