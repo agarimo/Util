@@ -8,12 +8,12 @@ package util;
  */
 public class CalculaNif {
 
-    private final String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
-    private final String letrasCif = "ABCDEFGHJKLMNPQRSUVW";
-    private final String letrasNie = "XYZ";
-    private final String digitoControlCif = "JABCDEFGHI";
-    private final String cifNumero = "ABEH";
-    private final String cifLetra = "KPQS";
+    public final String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
+    public final String letrasCif = "ABCDEFGHJKLMNPQRSUVW";
+    public final String letrasNie = "XYZ";
+    public final String digitoControlCif = "JABCDEFGHI";
+    public final String cifNumero = "ABEH";
+    public final String cifLetra = "KPQS";
 
     public CalculaNif() {
     }
