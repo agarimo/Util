@@ -9,7 +9,7 @@ import java.sql.*;
 public class Sql {
 
     public Connection con;
-    Statement stmt;
+    public Statement stmt;
 
     /**
      * Constructor de clase.
