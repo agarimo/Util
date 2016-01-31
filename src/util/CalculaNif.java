@@ -11,9 +11,9 @@ public class CalculaNif {
     public final String letrasNif = "TRWAGMYFPDXBNJZSQVHLCKE";
     public final String letrasCif = "ABCDEFGHJKLMNPQRSUVW";
     public final String letrasNie = "XYZ";
-    public final String digitoControlCif = "JABCDEFGHI";
-    public final String cifNumero = "ABEH";
-    public final String cifLetra = "KPQS";
+    private final String digitoControlCif = "JABCDEFGHI";
+    private final String cifNumero = "ABEH";
+    private final String cifLetra = "KPQS";
 
     public CalculaNif() {
     }
@@ -88,6 +88,13 @@ public class CalculaNif {
 
         if (nie.length() == 9) {
             nie = nie.substring(0, nie.length() - 1);
+        }
+        
+        if(nie.length()<8){
+            String letra = ""+nie.charAt(0);
+            String cont = nie.substring(1, nie.length());
+            cont=completaCeros(cont,7);
+            nie=letra+cont;
         }
 
         if (nie.startsWith("X")) {
