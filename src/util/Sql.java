@@ -8,8 +8,8 @@ import java.sql.*;
  */
 public class Sql {
 
-    public Connection con;
-    public Statement stmt;
+    private Connection con;
+    private Statement stmt;
 
     /**
      * Constructor de clase.
@@ -19,6 +19,14 @@ public class Sql {
      */
     public Sql(Conexion conexion) throws SQLException {
         con = DriverManager.getConnection(conexion.getRuta(), conexion.getUsuario(), conexion.getPass());
+    }
+
+    public Connection getCon() {
+        return con;
+    }
+
+    public Statement getStmt() {
+        return stmt;
     }
 
     /**
