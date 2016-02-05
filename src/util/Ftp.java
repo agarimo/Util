@@ -17,17 +17,13 @@ import org.apache.commons.net.ftp.FTPClient;
  */
 public class Ftp {
 
-    ConexionFtp con;
     FTPClient ftpClient;
 
     public Ftp(ConexionFtp con) throws IOException {
-        this.con = con;
-
+        ftpClient = new FTPClient();
         ftpClient.connect(con.getHost(), con.getPort());
         ftpClient.login(con.getUser(), con.getPass());
         ftpClient.enterLocalPassiveMode();
-
-        ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
     }
 
     public void close() throws IOException {
