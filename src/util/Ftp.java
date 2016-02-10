@@ -10,6 +10,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
+import org.apache.commons.net.ftp.FTPFileFilter;
 
 /**
  *
@@ -55,6 +57,16 @@ public class Ftp {
 
     public boolean createDir(String dir) throws IOException {
         return ftpClient.makeDirectory(dir);
+    }
+
+    public boolean searchFile(String file) throws IOException {
+        FTPFile[] result = ftpClient.listFiles(file, new FTPFileFilter() {
+            @Override
+            public boolean accept(FTPFile ftpFile) {
+                return ftpFile.isFile();
+            }
+        });
+        return result.length > 0;
     }
 
 }
