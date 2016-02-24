@@ -9,10 +9,10 @@ import javafx.scene.control.Alert;
  * @author Agarimo
  */
 public class Query {
-    private static Sql bd;
-    private static ResultSet rs;
+    protected static Sql bd;
+    protected static ResultSet rs;
     
-    private static void error(String aux) {
+    protected static void error(String aux) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
