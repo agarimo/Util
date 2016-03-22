@@ -11,6 +11,7 @@ import java.util.logging.Logger;
  *
  * @author Agárimo
  */
+@Deprecated
 public class Log {
 
     private File dir;

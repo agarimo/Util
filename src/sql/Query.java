@@ -1,4 +1,4 @@
-package util;
+package sql;
 
 import java.sql.ResultSet;
 import javafx.application.Platform;
@@ -11,6 +11,10 @@ import javafx.scene.control.Alert;
 public class Query {
     protected static Sql bd;
     protected static ResultSet rs;
+    
+    protected static void ejecutar(String query){
+        
+    }
     
     protected static void error(String aux) {
         Platform.runLater(() -> {
