@@ -38,7 +38,7 @@ import java.util.logging.Logger;
  */
 public class Pdf {
 
-    public void convertPDF(File origen, File destino) {
+    public static void convertPDF(File origen, File destino) {
         try {
             destino.createNewFile();
         } catch (IOException ex) {
@@ -67,7 +67,7 @@ public class Pdf {
         }
     }
 
-    private void convertPDFFixFile(File txt) {
+    private static void convertPDFFixFile(File txt) {
         String datos = Util.leeArchivo(txt);
         Util.escribeArchivo(txt, datos);
     }
