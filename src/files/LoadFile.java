@@ -40,6 +40,10 @@ public class LoadFile {
         }
     }
     
+    public void eliminaCabecera(){
+        lineas.remove(0);
+    }
+    
     public int getCount(){
         return this.count;
     }
