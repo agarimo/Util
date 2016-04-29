@@ -1,6 +1,8 @@
 package sql;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -37,7 +39,6 @@ public class Sql {
      */
     public void ejecutar(String query) throws SQLException {
         stmt = con.createStatement();
-//        bool = stmt.execute(query);
         stmt.executeUpdate(query);
     }
 
@@ -85,6 +86,18 @@ public class Sql {
             }
         }
         return str;
+    }
+    
+    public List getStringList(String query) throws SQLException {
+        List aux = new ArrayList();
+        String str;
+        try (ResultSet result = ejecutarQueryRs(query)) {
+            if (result.next()) {
+                str = result.getString(1);
+                aux.add(str);
+            } 
+        }
+        return aux;
     }
 
     public int getInt(String query) throws SQLException {
