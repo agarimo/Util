@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +20,15 @@ public class LoadFile {
     private final List<String> lineas;
     private int count;
     private final boolean isCorrecto;
-    
-    public LoadFile(File file){
-        this.file=file;
-        count=0;
-        isCorrecto=true;
-        lineas=new ArrayList<>();
+
+    public LoadFile(File file) {
+        this.file = file;
+        count = 0;
+        isCorrecto = true;
+        lineas = new ArrayList<>();
         loadLines();
     }
-    
+
     private void loadLines() {
         try (FileReader fr = new FileReader(this.file); BufferedReader br = new BufferedReader(fr)) {
             String linea;
@@ -39,16 +40,28 @@ public class LoadFile {
             Logger.getLogger(LoadFile.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public void eliminaCabecera(){
+
+    public void eliminaCabecera() {
         lineas.remove(0);
     }
-    
-    public int getCount(){
+
+    public int getCount() {
         return this.count;
     }
-    
-    public List<String> getLineas(){
+
+    public List<String> getLineas() {
         return this.lineas;
+    }
+
+    public String getFileData() {
+        StringBuilder sb = new StringBuilder();
+        Iterator it = lineas.iterator();
+
+        while (it.hasNext()) {
+            sb.append(it.next());
+            sb.append(System.lineSeparator());
+        }
+
+        return sb.toString();
     }
 }

@@ -43,6 +43,10 @@ public class Varios {
     public static String entrecomillar(String contenido) {
         return "'" + contenido + "'";
     }
+    
+    public static String comillas(String contenido){
+        return "'" + contenido.replace("'", "\\'") + "'";
+    }
 
     /**
      * Método que calcula el progreso, en tanto por ciento, de una tarea.

@@ -38,33 +38,29 @@ import java.util.logging.Logger;
  */
 public class Pdf {
 
-    public static void convertPDF(File origen, File destino) {
+    public static void convertPDF(File origen, File destino) throws IOException {
         try {
             destino.createNewFile();
         } catch (IOException ex) {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        try {
-            FileWriter fw = new FileWriter(destino.getAbsolutePath());
-            try (BufferedWriter bw = new BufferedWriter(fw)) {
-                PdfReader pr = new PdfReader(origen.getAbsolutePath());
-                int pNum = pr.getNumberOfPages();
-                for (int page = 1; page <= pNum; page++) {
-                    String text = PdfTextExtractor.getTextFromPage(pr, page);
-                    bw.write(text);
-                    bw.newLine();
-                }
-                bw.flush();
-                pr.close();
-                bw.close();
-                fw.close();
+        FileWriter fw = new FileWriter(destino.getAbsolutePath());
+        try (BufferedWriter bw = new BufferedWriter(fw)) {
+            PdfReader pr = new PdfReader(origen.getAbsolutePath());
+            int pNum = pr.getNumberOfPages();
+            for (int page = 1; page <= pNum; page++) {
+                String text = PdfTextExtractor.getTextFromPage(pr, page);
+                bw.write(text);
+                bw.newLine();
             }
-            convertPDFFixFile(destino);
-
-        } catch (Exception ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
+            bw.flush();
+            pr.close();
+            bw.close();
+            fw.close();
         }
+        convertPDFFixFile(destino);
+
     }
 
     private static void convertPDFFixFile(File txt) {
