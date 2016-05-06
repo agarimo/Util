@@ -1,4 +1,4 @@
-package server.socket;
+package socket.enty;
 
 import java.io.Serializable;
 
@@ -6,17 +6,17 @@ import java.io.Serializable;
  *
  * @author Agarimo
  */
-public enum ServerResponse implements Serializable {
-    CONECTED {
+public enum ServerRequest implements Serializable {
+    CONNECT {
         @Override
         public String toString() {
-            return "CONECTED";
+            return "CONNECT";
         }
     },
-    DISCONECTED {
+    DISCONECT {
         @Override
         public String toString() {
-            return "DISCONECTED";
+            return "DISCONECT";
         }
     },
     STATUS {
@@ -25,16 +25,10 @@ public enum ServerResponse implements Serializable {
             return "STATUS";
         }
     },
-    OK {
+    RUN_TASK {
         @Override
         public String toString() {
-            return "OK";
-        }
-    },
-    ERROR {
-        @Override
-        public String toString() {
-            return "ERROR";
+            return "RUN_TASK";
         }
     };
 }

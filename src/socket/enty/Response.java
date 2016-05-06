@@ -1,4 +1,4 @@
-package server.socket;
+package socket.enty;
 
 import java.io.Serializable;
 import java.util.ArrayList;

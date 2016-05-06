@@ -1,4 +1,4 @@
-package server.socket;
+package socket.enty;
 
 import java.io.Serializable;
 
@@ -6,35 +6,35 @@ import java.io.Serializable;
  *
  * @author Agarimo
  */
-public enum ServerTask implements Serializable {
-    BOE {
+public enum ServerResponse implements Serializable {
+    CONECTED {
         @Override
         public String toString() {
-            return "BOE";
+            return "CONECTED";
         }
     },
-    BOE_CLASIFICACION {
+    DISCONECTED {
         @Override
         public String toString() {
-            return "BOE_CLASIFICACION";
+            return "DISCONECTED";
         }
     },
-    ESTRUCTURAS {
+    STATUS {
         @Override
         public String toString() {
-            return "ESTRUCTURAS";
+            return "STATUS";
         }
     },
-    ESTRUCTURAS_PENDIENTES {
+    OK {
         @Override
         public String toString() {
-            return "ESTRUCTURAS_PENDIENTES";
+            return "OK";
         }
     },
-    FASES {
+    ERROR {
         @Override
         public String toString() {
-            return "FASES";
+            return "ERROR";
         }
     };
 }
