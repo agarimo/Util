@@ -1,6 +1,5 @@
 package util;
 
-
 import java.awt.Desktop;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -43,9 +42,13 @@ public class Varios {
     public static String entrecomillar(String contenido) {
         return "'" + contenido + "'";
     }
-    
-    public static String comillas(String contenido){
-        return "'" + contenido.replace("'", "\\'") + "'";
+
+    public static String comillas(String contenido) {
+        if (contenido != null) {
+            return "'" + contenido.replace("'", "\\'") + "'";
+        } else {
+            return "''";
+        }
     }
 
     /**

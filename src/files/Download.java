@@ -42,7 +42,7 @@ import java.util.logging.Logger;
  * @author Agarimo
  */
 public class Download {
-    
+
     public static String downloadURL(String enlace) throws MalformedURLException, IOException {
         String inputLine;
         URL link = new URL(enlace);
@@ -56,12 +56,12 @@ public class Download {
         }
         return buffer.toString();
     }
-    
+
     public static void downloadFILE(String link, File destino) {
         try {
             URL enlace = new URL(link);
             URLConnection connection = enlace.openConnection();
-            
+
             OutputStream out;
             try (InputStream in = connection.getInputStream()) {
                 out = new DataOutputStream(new FileOutputStream(destino));
@@ -78,5 +78,5 @@ public class Download {
             Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
 }
