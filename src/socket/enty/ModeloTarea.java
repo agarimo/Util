@@ -21,7 +21,6 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
 package socket.enty;
 
 import java.io.Serializable;
@@ -35,14 +34,15 @@ import javafx.beans.property.SimpleStringProperty;
  * @author Agárimo
  */
 public class ModeloTarea implements Serializable {
-    
+
     SimpleIntegerProperty id = new SimpleIntegerProperty();
     SimpleStringProperty fechaInicio = new SimpleStringProperty();
     SimpleStringProperty propietario = new SimpleStringProperty();
     SimpleStringProperty tipoTarea = new SimpleStringProperty();
+    SimpleStringProperty titulo = new SimpleStringProperty();
     SimpleStringProperty porcentaje = new SimpleStringProperty();
     SimpleStringProperty progreso = new SimpleStringProperty();
-    
+
     private ServerTask tipo;
 
     public int getId() {
@@ -52,7 +52,7 @@ public class ModeloTarea implements Serializable {
     public void setId(int id) {
         this.id.setValue(id);
     }
-    
+
     public String getFechaInicio() {
         return fechaInicio.getValue();
     }
@@ -72,13 +72,13 @@ public class ModeloTarea implements Serializable {
     public String getTipoTarea() {
         return tipoTarea.getValue();
     }
-    
-    public ServerTask getTipo(){
+
+    public ServerTask getTipo() {
         return this.tipo;
     }
 
     public void setTipoTarea(ServerTask tipoTarea) {
-        this.tipo=tipoTarea;
+        this.tipo = tipoTarea;
         this.tipoTarea.setValue(tipoTarea.toString());
     }
 
@@ -96,5 +96,18 @@ public class ModeloTarea implements Serializable {
 
     public void setProgreso(String progreso) {
         this.progreso.setValue(progreso);
+    }
+
+    public String getTitulo() {
+        return titulo.getValue();
+    }
+
+    public void setTitulo(String titulo) {
+        this.titulo.setValue(titulo);
+    }
+
+    @Override
+    public String toString() {
+        return "ModeloTarea{" + "fechaInicio=" + fechaInicio + ", propietario=" + propietario + ", tipoTarea=" + tipoTarea + ", titulo=" + titulo + ", porcentaje=" + porcentaje + ", progreso=" + progreso + ", tipo=" + tipo + '}';
     }
 }
