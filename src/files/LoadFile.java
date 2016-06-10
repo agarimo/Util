@@ -19,12 +19,10 @@ public class LoadFile {
     private final File file;
     private final List<String> lineas;
     private int count;
-    private final boolean isCorrecto;
 
     public LoadFile(File file) {
         this.file = file;
         count = 0;
-        isCorrecto = true;
         lineas = new ArrayList<>();
         loadLines();
     }
