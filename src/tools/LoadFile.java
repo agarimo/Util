@@ -1,8 +1,10 @@
-package files;
+package tools;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -61,5 +63,37 @@ public class LoadFile {
         }
 
         return sb.toString();
+    }
+
+    public static String readFile(File file) {
+        try (FileReader fr = new FileReader(file); BufferedReader br = new BufferedReader(fr)) {
+            StringBuilder sb = new StringBuilder();
+            String linea;
+            while ((linea = br.readLine()) != null) {
+                sb.append(linea);
+                sb.append(System.lineSeparator());
+            }
+
+            return sb.toString();
+        } catch (IOException ex) {
+            Logger.getLogger(LoadFile.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+    }
+
+    public static void writeFile(File file, String datos) {
+        try (FileWriter fw = new FileWriter(file); BufferedWriter out = new BufferedWriter(fw)) {
+            out.write(datos);
+        } catch (IOException ex) {
+            Logger.getLogger(LoadFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public static void writeFileAppend(File file, String datos) {
+        try (FileWriter fw = new FileWriter(file); BufferedWriter out = new BufferedWriter(fw)) {
+            out.append(datos);
+        } catch (IOException ex) {
+            Logger.getLogger(LoadFile.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

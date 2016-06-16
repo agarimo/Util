@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package files;
+package tools;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -57,26 +57,20 @@ public class Download {
         return buffer.toString();
     }
 
-    public static void downloadFILE(String link, File destino) {
-        try {
-            URL enlace = new URL(link);
-            URLConnection connection = enlace.openConnection();
+    public static void downloadFILE(String link, File destino) throws MalformedURLException, IOException {
+        URL enlace = new URL(link);
+        URLConnection connection = enlace.openConnection();
 
-            OutputStream out;
-            try (InputStream in = connection.getInputStream()) {
-                out = new DataOutputStream(new FileOutputStream(destino));
-                byte[] buffer = new byte[1024];
-                int sizeRead;
-                while ((sizeRead = in.read(buffer)) >= 0) {
-                    out.write(buffer, 0, sizeRead);
-                }
+        OutputStream out;
+        try (InputStream in = connection.getInputStream()) {
+            out = new DataOutputStream(new FileOutputStream(destino));
+            byte[] buffer = new byte[1024];
+            int sizeRead;
+            while ((sizeRead = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, sizeRead);
             }
-            out.close();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
+        out.close();
     }
 
 }

@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package files;
+package tools;
 
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
@@ -56,8 +56,8 @@ public class Pdf {
         convertPDFFixFile(destino);
     }
 
-    private static void convertPDFFixFile(File txt) {
-        String datos = Util.leeArchivo(txt);
-        Util.escribeArchivo(txt, datos);
+    private static void convertPDFFixFile(File aux) {
+        String datos = LoadFile.readFile(aux);
+        LoadFile.writeFile(aux, datos);
     }
 }
