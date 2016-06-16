@@ -32,17 +32,6 @@ public class Varios {
         }
     }
 
-    /**
-     * Método que entrecomilla con comillas simples el String pasado como
-     * parámetro
-     *
-     * @param contenido String a entrecomillar
-     * @return Devuelve un String con el contenido entrecomillado
-     */
-    public static String entrecomillar(String contenido) {
-        return "'" + contenido + "'";
-    }
-
     public static String comillas(String contenido) {
         if (contenido != null) {
             return "'" + contenido.replace("'", "\\'") + "'";
