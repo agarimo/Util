@@ -44,12 +44,12 @@ public class Stats {
     private LocalDate fecha;
     private LocalTime horaInit;
     private LocalTime horaFin;
-    private String detalle;
+    private String parametros;
 
-    public Stats(ServerTask tarea, String propietario,String detalle) {
+    public Stats(ServerTask tarea, String propietario) {
         this.tarea = tarea;
         this.propietario = propietario;
-        this.detalle= detalle;
+        this.parametros = "";
     }
 
     public int getId() {
@@ -100,19 +100,19 @@ public class Stats {
         this.horaFin = horaFin;
     }
 
-    public String getDetalle() {
-        return detalle;
+    public String getParametros() {
+        return parametros;
     }
 
-    public void setDetalle(String detalle) {
-        this.detalle = detalle;
+    public void setParametros(String parametros) {
+        this.parametros = parametros;
     }
 
     private String initQuery() {
-        return "INSERT into server.stats (tarea,propietario,detalle,fecha,hora_inicio) values("
+        return "INSERT into server.stats (tarea,propietario,parametros,fecha,hora_inicio) values("
                 + Util.comillas(this.tarea.toString()) + ","
                 + Util.comillas(this.propietario) + ","
-                + Util.comillas(this.detalle) + ","
+                + Util.comillas(this.parametros) + ","
                 + Util.comillas(this.fecha.format(DateTimeFormatter.ISO_LOCAL_DATE)) + ","
                 + Util.comillas(this.horaInit.format(DateTimeFormatter.ISO_TIME))
                 + ");";
