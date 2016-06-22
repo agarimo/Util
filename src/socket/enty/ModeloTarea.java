@@ -42,8 +42,8 @@ public class ModeloTarea implements Serializable {
     SimpleStringProperty titulo = new SimpleStringProperty();
     SimpleStringProperty porcentaje = new SimpleStringProperty();
     SimpleStringProperty progreso = new SimpleStringProperty();
-    SimpleStringProperty parametros = new SimpleStringProperty();
-
+    
+    private String parametros;
     private ServerTask tipo;
 
     public int getId() {
@@ -108,11 +108,11 @@ public class ModeloTarea implements Serializable {
     }
     
     public String getParametros() {
-        return titulo.getValue();
+        return this.parametros;
     }
 
-    public void setParametros(String titulo) {
-        this.titulo.setValue(titulo);
+    public void setParametros(String parametros) {
+        this.parametros=parametros;
     }
 
     @Override
