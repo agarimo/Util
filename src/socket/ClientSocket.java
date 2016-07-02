@@ -25,7 +25,8 @@ public class ClientSocket {
     private ObjectInputStream in;
 
     public ClientSocket() {
-        
+        this.host="localhost";
+        this.port=10987;
     }
 
     public ClientSocket(String host, int port) {
