@@ -42,7 +42,7 @@ public class ModeloTarea implements Serializable {
     SimpleStringProperty titulo = new SimpleStringProperty();
     SimpleStringProperty porcentaje = new SimpleStringProperty();
     SimpleStringProperty progreso = new SimpleStringProperty();
-    
+
     private String parametros;
     private ServerTask tipo;
 
@@ -106,17 +106,31 @@ public class ModeloTarea implements Serializable {
     public void setTitulo(String titulo) {
         this.titulo.setValue(titulo);
     }
-    
+
     public String getParametros() {
         return this.parametros;
     }
 
     public void setParametros(String parametros) {
-        this.parametros=parametros;
+        this.parametros = parametros;
     }
 
     @Override
     public String toString() {
-        return "ModeloTarea{" + "fechaInicio=" + fechaInicio + ", propietario=" + propietario + ", tipoTarea=" + tipoTarea + ", titulo=" + titulo + ", porcentaje=" + porcentaje + ", progreso=" + progreso + ", tipo=" + tipo + '}';
+        switch (this.tipo) {
+            case BOE:
+                return "Descarga BOE";
+            case BOE_CLASIFICACION:
+                return "Clasifica BOE";
+            case ESTRUCTURAS:
+                return "Estructuras";
+            case ESTRUCTURAS_PENDIENTES:
+                return "Estructuras pendientes";
+            case FASES:
+                return "Fases";
+            default:
+                return "Default.";
+
+        }
     }
 }
