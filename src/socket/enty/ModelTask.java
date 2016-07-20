@@ -24,7 +24,6 @@
 package socket.enty;
 
 import java.io.Serializable;
-import java.time.LocalDateTime;
 
 /**
  *
