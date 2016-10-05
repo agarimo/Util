@@ -12,7 +12,7 @@ public class Query {
 
     protected static Sql bd;
     protected static ResultSet rs;
-
+    
     protected static void error(String aux) {
         Platform.runLater(() -> {
             Alert alert = new Alert(Alert.AlertType.ERROR);

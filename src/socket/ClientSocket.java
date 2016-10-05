@@ -25,8 +25,8 @@ public class ClientSocket {
     private ObjectInputStream in;
 
     public ClientSocket() {
-        this.host="localhost";
-        this.port=10987;
+        this.host = "localhost";
+        this.port = 10987;
     }
 
     public ClientSocket(String host, int port) {
@@ -86,7 +86,6 @@ public class ClientSocket {
             }
 
         } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(ClientSocket.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
     }
