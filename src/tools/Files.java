@@ -1,5 +1,6 @@
 package tools;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -12,6 +13,15 @@ import java.io.OutputStream;
  * @author Agárimo
  */
 public class Files {
+    
+    public static boolean openFile(File file){
+        try {
+            Desktop.getDesktop().open(file);
+            return true;
+        } catch (IOException ex) {
+            return false;
+        }
+    }
 
     private static void copyDir(File origen, File destino) {
         if (origen.isDirectory()) {

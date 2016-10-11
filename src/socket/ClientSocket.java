@@ -50,23 +50,17 @@ public class ClientSocket {
         this.port = port;
     }
 
-    public boolean conect() {
-        try {
-            socket = new Socket(host, port);
-            out = new ObjectOutputStream(socket.getOutputStream());
-            in = new ObjectInputStream(socket.getInputStream());
+    public boolean conect() throws IOException, ClassNotFoundException {
+        socket = new Socket(host, port);
+        out = new ObjectOutputStream(socket.getOutputStream());
+        in = new ObjectInputStream(socket.getInputStream());
 
-            Response aux;
+        Response aux;
 
-            out.writeObject(new Request(ServerRequest.CONNECT));
-            aux = (Response) in.readObject();
+        out.writeObject(new Request(ServerRequest.CONNECT));
+        aux = (Response) in.readObject();
 
-            return aux.getResponse().equals(ServerResponse.CONECTED);
-
-        } catch (IOException | ClassNotFoundException ex) {
-            Logger.getLogger(ClientSocket.class.getName()).log(Level.SEVERE, null, ex);
-            return false;
-        }
+        return aux.getResponse().equals(ServerResponse.CONECTED);
     }
 
     public boolean disconect() {
