@@ -78,9 +78,7 @@ public class Files {
 
         for (File archivo : archivos) {
             aux = archivo;
-            if (aux.isDirectory()) {
-                aux.delete();
-            }
+            deleteDir(aux);
         }
     }
 
