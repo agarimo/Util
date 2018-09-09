@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane maxHeight="30.0" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane cache="true" layoutY="-150.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="150.0" prefWidth="502.0" style="-fx-background-color: white;" translateY="180.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="128.0">
+         <children>
+            <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <TableView fx:id="tabla" focusTraversable="false" prefHeight="150.0" prefWidth="472.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="30.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <columns>
+                  <TableColumn fx:id="tareaCL" editable="false" prefWidth="109.0" sortable="false" text="Tarea" />
+                  <TableColumn fx:id="propietarioCL" editable="false" prefWidth="116.0" sortable="false" text="Propietario" />
+                  <TableColumn fx:id="porcentajeCL" editable="false" prefWidth="35.0" sortable="false" text="\%" />
+                  <TableColumn fx:id="estadoCL" editable="false" minWidth="220.0" prefWidth="-1.0" sortable="false" text="Estado" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <HBox alignment="CENTER_RIGHT" layoutY="200.0" maxHeight="30.0" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="600.0" spacing="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button focusTraversable="false" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="..." />
+            <Label prefHeight="30.0" text="No hay tareas en ejecución" />
+            <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
+            <Label prefHeight="30.0" text="Off-Line" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="10.0" stroke="BLACK" strokeType="INSIDE" width="10.0">
+               <HBox.margin>
+                  <Insets left="10.0" right="10.0" />
+               </HBox.margin>
+            </Rectangle>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

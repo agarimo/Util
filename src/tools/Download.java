@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package files;
+package tools;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -34,15 +34,13 @@ import java.io.OutputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
  * @author Agarimo
  */
 public class Download {
-    
+
     public static String downloadURL(String enlace) throws MalformedURLException, IOException {
         String inputLine;
         URL link = new URL(enlace);
@@ -56,27 +54,21 @@ public class Download {
         }
         return buffer.toString();
     }
-    
-    public static void downloadFILE(String link, File destino) {
-        try {
-            URL enlace = new URL(link);
-            URLConnection connection = enlace.openConnection();
-            
-            OutputStream out;
-            try (InputStream in = connection.getInputStream()) {
-                out = new DataOutputStream(new FileOutputStream(destino));
-                byte[] buffer = new byte[1024];
-                int sizeRead;
-                while ((sizeRead = in.read(buffer)) >= 0) {
-                    out.write(buffer, 0, sizeRead);
-                }
+
+    public static void downloadFILE(String link, File destino) throws MalformedURLException, IOException {
+        URL enlace = new URL(link);
+        URLConnection connection = enlace.openConnection();
+
+        OutputStream out;
+        try (InputStream in = connection.getInputStream()) {
+            out = new DataOutputStream(new FileOutputStream(destino));
+            byte[] buffer = new byte[1024];
+            int sizeRead;
+            while ((sizeRead = in.read(buffer)) >= 0) {
+                out.write(buffer, 0, sizeRead);
             }
-            out.close();
-        } catch (MalformedURLException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Util.class.getName()).log(Level.SEVERE, null, ex);
         }
+        out.close();
     }
-    
+
 }

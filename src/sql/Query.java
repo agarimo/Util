@@ -9,12 +9,9 @@ import javafx.scene.control.Alert;
  * @author Agarimo
  */
 public class Query {
+
     protected static Sql bd;
     protected static ResultSet rs;
-    
-    protected static void ejecutar(String query){
-        
-    }
     
     protected static void error(String aux) {
         Platform.runLater(() -> {

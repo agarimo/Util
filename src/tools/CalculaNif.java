@@ -1,4 +1,4 @@
-package util;
+package tools;
 
 /**
  * Clase que calcula o valida un documento de identificación del reino de
@@ -13,7 +13,7 @@ public class CalculaNif {
     public final String letrasNie = "XYZ";
     private final String digitoControlCif = "JABCDEFGHI";
     private final String cifNumero = "ABEH";
-    private final String cifLetra = "KPQS";
+    private final String cifLetra = "FJKNPQRSUVW";
 
     public CalculaNif() {
     }

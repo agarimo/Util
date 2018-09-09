@@ -92,7 +92,7 @@ public class Sql {
         List aux = new ArrayList();
         String str;
         try (ResultSet result = ejecutarQueryRs(query)) {
-            if (result.next()) {
+            while (result.next()) {
                 str = result.getString(1);
                 aux.add(str);
             } 
